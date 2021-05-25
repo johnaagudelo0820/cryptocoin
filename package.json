@@ -28,10 +28,17 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.4",
+    "@react-native-community/masked-view": "^0.1.11",
+    "@react-navigation/bottom-tabs": "^5.11.11",
+    "@react-navigation/native": "^5.9.4",
     "document-register-element": "1.13.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-native": "0.63.4",
+    "react-native-gesture-handler": "^1.10.3",
+    "react-native-reanimated": "^2.1.0",
+    "react-native-safe-area-context": "^3.2.0",
+    "react-native-screens": "^3.3.0",
     "react-router-dom": "5.2.0",
     "tslib": "^2.0.0"
   },
