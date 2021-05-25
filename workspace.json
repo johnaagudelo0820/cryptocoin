@@ -1,10 +1,202 @@
 {
-  
-  
   "version": 2,
-  
-  "projects": {},
   "cli": {
-    "defaultCollection": "@nrwl/workspace"
+    "defaultCollection": "@nrwl/react"
+  },
+  "projects": {
+    "cryptocoin-app": {
+      "root": "apps/cryptocoin-app",
+      "sourceRoot": "apps/cryptocoin-app/src",
+      "projectType": "application",
+      "generators": {},
+      "targets": {
+        "start": {
+          "executor": "@nrwl/react-native:start",
+          "options": {
+            "port": 8081
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "command": "nx start cryptocoin-app"
+          }
+        },
+        "run-ios": {
+          "executor": "@nrwl/react-native:run-ios",
+          "options": {}
+        },
+        "bundle-ios": {
+          "executor": "@nrwl/react-native:bundle",
+          "outputs": [
+            "apps/cryptocoin-app/build"
+          ],
+          "options": {
+            "entryFile": "apps/cryptocoin-app/src/main.tsx",
+            "platform": "ios",
+            "bundleOutput": "dist/apps/cryptocoin-app/ios/main.bundle"
+          }
+        },
+        "run-android": {
+          "executor": "@nrwl/react-native:run-android",
+          "options": {}
+        },
+        "build-android": {
+          "executor": "@nrwl/react-native:build-android",
+          "outputs": [
+            "apps/cryptocoin-app/android/app/build/outputs/bundle",
+            "apps/cryptocoin-app/android/app/build/outputs/apk"
+          ],
+          "options": {}
+        },
+        "bundle-android": {
+          "executor": "@nrwl/react-native:bundle",
+          "options": {
+            "entryFile": "apps/cryptocoin-app/src/main.tsx",
+            "platform": "android",
+            "bundleOutput": "dist/apps/cryptocoin-app/android/main.bundle"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/cryptocoin-app/**/*.{js,ts,tsx}"
+            ]
+          }
+        },
+        "sync-deps": {
+          "executor": "@nrwl/react-native:sync-deps",
+          "options": {}
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/cryptocoin-app/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "cryptocoin-web": {
+      "root": "apps/cryptocoin-web",
+      "sourceRoot": "apps/cryptocoin-web/src",
+      "projectType": "application",
+      "generators": {},
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:build",
+          "options": {
+            "outputPath": "dist/apps/cryptocoin-web",
+            "index": "apps/cryptocoin-web/src/index.html",
+            "main": "apps/cryptocoin-web/src/main.tsx",
+            "polyfills": "apps/cryptocoin-web/src/polyfills.ts",
+            "tsConfig": "apps/cryptocoin-web/tsconfig.app.json",
+            "assets": [
+              "apps/cryptocoin-web/src/favicon.ico",
+              "apps/cryptocoin-web/src/assets"
+            ],
+            "styles": [],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/cryptocoin-web/src/environments/environment.ts",
+                  "with": "apps/cryptocoin-web/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "cryptocoin-web:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "cryptocoin-web:build:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/cryptocoin-web/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/cryptocoin-web/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "cryptocoin-web-e2e": {
+      "root": "apps/cryptocoin-web-e2e",
+      "sourceRoot": "apps/cryptocoin-web-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/cryptocoin-web-e2e/cypress.json",
+            "tsConfig": "apps/cryptocoin-web-e2e/tsconfig.e2e.json",
+            "devServerTarget": "cryptocoin-web:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "cryptocoin-web:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/cryptocoin-web-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "cryptocoin-app",
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "style": "none",
+        "linter": "eslint",
+        "babel": true
+      },
+      "component": {
+        "style": "none"
+      },
+      "library": {
+        "style": "none",
+        "linter": "eslint"
+      }
+    }
   }
 }
