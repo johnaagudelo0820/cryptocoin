@@ -14,7 +14,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@coincap/http": ["libs/http/src/index.ts"],
+      "@coincap/ws": ["libs/ws/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

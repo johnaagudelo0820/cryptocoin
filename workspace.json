@@ -3,6 +3,23 @@
   "cli": {
     "defaultCollection": "@nrwl/react"
   },
+  "defaultProject": "cryptocoin-app",
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "style": "none",
+        "linter": "eslint",
+        "babel": true
+      },
+      "component": {
+        "style": "none"
+      },
+      "library": {
+        "style": "none",
+        "linter": "eslint"
+      }
+    }
+  },
   "projects": {
     "cryptocoin-app": {
       "root": "apps/cryptocoin-app",
@@ -139,9 +156,7 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/cryptocoin-web/**/*.{ts,tsx,js,jsx}"
-            ]
+            "lintFilePatterns": ["apps/cryptocoin-web/**/*.{ts,tsx,js,jsx}"]
           }
         },
         "test": {
@@ -174,28 +189,51 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/cryptocoin-web-e2e/**/*.{js,ts}"
-            ]
+            "lintFilePatterns": ["apps/cryptocoin-web-e2e/**/*.{js,ts}"]
           }
         }
       }
-    }
-  },
-  "defaultProject": "cryptocoin-app",
-  "generators": {
-    "@nrwl/react": {
-      "application": {
-        "style": "none",
-        "linter": "eslint",
-        "babel": true
-      },
-      "component": {
-        "style": "none"
-      },
-      "library": {
-        "style": "none",
-        "linter": "eslint"
+    },
+    "http": {
+      "root": "libs/http",
+      "sourceRoot": "libs/http/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/http/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/http"],
+          "options": {
+            "jestConfig": "libs/http/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ws": {
+      "root": "libs/ws",
+      "sourceRoot": "libs/ws/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/ws/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ws"],
+          "options": {
+            "jestConfig": "libs/ws/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
       }
     }
   }
