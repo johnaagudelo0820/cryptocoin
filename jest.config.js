@@ -1,3 +1,8 @@
 module.exports = {
-  projects: ['<rootDir>/apps/cryptocoin-app', '<rootDir>/apps/cryptocoin-web'],
+  projects: [
+    ,
+    '<rootDir>/apps/cryptocoin-web',
+    '<rootDir>/libs/http',
+    '<rootDir>/libs/ws',
+  ],
 };
