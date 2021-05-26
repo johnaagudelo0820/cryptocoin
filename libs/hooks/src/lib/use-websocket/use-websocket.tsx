@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
 
 import { Ws } from '@coincap/ws';
-import { Console } from 'node:console';
 
 export function useWebSocket(assets: string, onMessage: (e: any) => void) {
   const pricesWs = useRef(null);
