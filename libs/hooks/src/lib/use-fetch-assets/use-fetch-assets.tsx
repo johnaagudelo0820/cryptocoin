@@ -1,32 +1,36 @@
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 
 import { Http } from '@coincap/http';
+import { Asset, AssetAtom } from '@coincap/interfaces';
 
 /* eslint-disable-next-line */
-export interface useFetchAssetsProps {
-  callbackAssets: (oldState) => void,
-}
+type useFetchAssetsProps = (callback: () => AssetAtom) => void;
 
 export function useFetchAssets(url: string, callbackAssets: useFetchAssetsProps) {
-  const getCoins = async () => {
+  const getAPIAssets = async () => {
     const response = await Http.instance.get(url);
 
-    const hashCoins = response.data.reduce((listCoins, coin) => {
+    const hashCoins = response.data.reduce((listCoins: any, coin: Asset) => {
       listCoins[coin.id] = coin;
       return listCoins;
     }, {});
 
-    callbackAssets((oldAssets) => ({
-      ...oldAssets,
-      assetParam: response.data.map(coin => coin.id).join(','),
-      hashCoins,
-      list: [...response.data],
-    }));
+    callbackAssets(() => {
+      const updateAsset: AssetAtom = {
+        assetParam: response.data.map((coin: Asset) => coin.id).join(','),
+        hashCoins,
+        list: [...response.data],
+        loading: false,
+      };
+      return updateAsset;
+    });
   }
 
+  const getAsset = useCallback(getAPIAssets, [url, callbackAssets]);
+
   useEffect(() => {
-    getCoins();
-  }, []);
+    getAsset();
+  }, [getAsset]);
 }
 
 export default useFetchAssets;
