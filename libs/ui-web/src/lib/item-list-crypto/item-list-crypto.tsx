@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-import { makeStyles } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -9,6 +8,10 @@ import Avatar from '@material-ui/core/Avatar';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import clsx from 'clsx';
+
+import { formatterNumberWithDecimals } from '@coincap/utils';
+
+import useStyles from './item-list-crypto.styles';
 
 /* eslint-disable-next-line */
 export interface ItemListCryptoProps {
@@ -19,51 +22,6 @@ export interface ItemListCryptoProps {
   symbol: string,
   handlerOnClick: (id: string) => void, 
 }
-
-const useStyles = makeStyles((theme) => ({
-  contentPrice: {
-    display: 'flex',
-    width: '100%',
-    flex: 1,
-    justifyContent: 'space-between',
-  },
-  secundaryText: {
-    width: '30%',
-  },
-  price: {
-    marginRight: theme.spacing(1),
-  },
-  animatioDownPrice: {
-    background: 'transparent',
-    animation: `$downPrice 1s ${theme.transitions.easing.easeInOut}`,
-  },
-  animationUpPrice: {
-    background: 'transparent',
-    animation: `$upPrice 1s ${theme.transitions.easing.easeInOut}`,
-  },
-  "@keyframes downPrice": {
-    "0%": {
-      background: 'transparent',
-    },
-    "80%": {
-      background: 'red',
-    },
-    "100%": {
-      background: 'transparent',
-    }
-  },
-  "@keyframes upPrice": {
-    "0%": {
-      background: 'transparent',
-    },
-    "80%": {
-      background: 'green',
-    },
-    "100%": {
-      background: 'transparent',
-    }
-  },
-}));
 
 export function ItemListCrypto({ id, name, symbol, priceUsd, changePercent24Hr, handlerOnClick }: ItemListCryptoProps) {
   const [price, setPrice] = useState(priceUsd);
@@ -105,7 +63,7 @@ export function ItemListCrypto({ id, name, symbol, priceUsd, changePercent24Hr, 
               Price
             </Typography>
             <Typography variant="subtitle2" align="right">
-              {price}
+              {`$${formatterNumberWithDecimals(price, 2)}`}
             </Typography>
           </Box>
           <Box className={classes.price}>
@@ -113,7 +71,7 @@ export function ItemListCrypto({ id, name, symbol, priceUsd, changePercent24Hr, 
               (24H)
             </Typography>
             <Typography variant="subtitle2" align="right">
-              {changePercent24Hr}
+              {`%${formatterNumberWithDecimals(changePercent24Hr, 2)}`}
             </Typography>
           </Box>  
         </Box>
