@@ -2,11 +2,10 @@ import React from 'react';
 import { useHistory } from "react-router-dom";
 import { List, Paper } from '@material-ui/core';
 
+import { useRecoilState } from 'recoil';
 import { useWebSocket, useFetchAssets } from '@coincap/hooks';
 import { ItemListCrypto } from '@coincap/ui-web';
-import { useRecoilState } from 'recoil';
-
-import { assetsAtom } from '../../recoil/atoms';
+import { assetsAtom } from '@coincap/atoms'
 
 export function Home() {
   const history = useHistory();

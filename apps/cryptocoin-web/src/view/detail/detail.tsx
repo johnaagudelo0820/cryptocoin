@@ -6,9 +6,8 @@ import { Box } from '@material-ui/core';
 import moment from 'moment';
 
 import { Http } from '@coincap/http';
-import { assetdetailAtom } from '../../recoil/atoms';
-import { AssetHistory } from '../../recoil/interfaces';
-
+import { assetdetailAtom } from '@coincap/atoms';
+import { AssetHistory } from '@coincap/interfaces';
 import { useWebSocket } from '@coincap/hooks';
 
 /* eslint-disable-next-line */
