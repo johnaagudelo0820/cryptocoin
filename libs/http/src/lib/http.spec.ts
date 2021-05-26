@@ -1,7 +1,7 @@
-import { http } from './http';
+import { Http } from './http';
 
 describe('http', () => {
   it('should work', () => {
-    expect(http()).toEqual('http');
+    expect(Http()).toEqual('http');
   });
 });
