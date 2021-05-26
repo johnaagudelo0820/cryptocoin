@@ -16,6 +16,7 @@
     "@react-native-community/masked-view": "*",
     "@testing-library/react": "*",
     "@react-navigation/stack": "*",
-    "recoil": "*"
+    "recoil": "*",
+    "moment": "*"
   }
 }
