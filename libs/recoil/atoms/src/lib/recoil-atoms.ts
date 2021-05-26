@@ -12,6 +12,7 @@ export const assetsAtom = atom({
   default: {
     assetParam: '',
     hashCoins: {},
+    list: [],
     loading: true,
   } as AssetAtom,
 });

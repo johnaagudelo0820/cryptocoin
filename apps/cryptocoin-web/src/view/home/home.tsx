@@ -5,7 +5,7 @@ import { List, Paper } from '@material-ui/core';
 import { useRecoilState } from 'recoil';
 import { useWebSocket, useFetchAssets } from '@coincap/hooks';
 import { ItemListCrypto } from '@coincap/ui-web';
-import { assetsAtom } from '@coincap/atoms'
+import { assetsAtom } from '@coincap/atoms';
 
 export function Home() {
   const history = useHistory();
