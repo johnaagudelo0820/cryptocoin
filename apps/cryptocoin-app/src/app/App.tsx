@@ -6,9 +6,9 @@ import {
   Text,
 } from 'react-native';
 import { RecoilRoot } from 'recoil'; 
+import { colors } from '@coincap/utils' ;
 
 import Home from './home/home';
-import Color from './res/colors';
 
 const Tabs = createBottomTabNavigator();
 
@@ -23,7 +23,7 @@ import openURLInBrowser from 'react-native/Libraries/Core/Devtools/openURLInBrow
 const tabBarOptions = {
   tintColor: "#fefefe",
   style: {
-    backgroundColor: Color.blackPearl,
+    backgroundColor: colors.blackPearl,
   }
 };
 

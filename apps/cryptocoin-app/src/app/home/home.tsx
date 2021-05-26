@@ -1,8 +1,8 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
+import { colors } from '@coincap/utils';
 import HomeScreeen from './home-screen';
-import Color from '../res/colors';
 
 const Stack = createStackNavigator();
 export function Home() {
@@ -11,10 +11,10 @@ export function Home() {
       initialRouteName="Coins"
       screenOptions={{
         headerStyle: {
-          backgroundColor: Color.blackPearl,
-          shadowColor: Color.blackPearl,
+          backgroundColor: colors.blackPearl,
+          shadowColor: colors.blackPearl,
         },
-        headerTintColor: Color.white,
+        headerTintColor: colors.white,
       }}
     >
       <Stack.Screen name="Coins" component={HomeScreeen} options={{ title: 'Coincap' }}/>
