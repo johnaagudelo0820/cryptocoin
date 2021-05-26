@@ -20,7 +20,9 @@
       "@coincap/ui-web": ["libs/ui-web/src/index.ts"],
       "@coincap/hooks": ["libs/hooks/src/index.ts"],
       "@coincap/atoms": ["libs/recoil/atoms/src/index.ts"],
-      "@coincap/interfaces": ["libs/recoil/interfaces/src/index.ts"]
+      "@coincap/interfaces": ["libs/recoil/interfaces/src/index.ts"],
+      "@coincap/ui-mobile": ["libs/ui-mobile/src/index.ts"],
+      "@coincap/utils": ["libs/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

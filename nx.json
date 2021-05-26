@@ -46,6 +46,12 @@
     },
     "recoil-interfaces": {
       "tags": []
+    },
+    "ui-mobile": {
+      "tags": []
+    },
+    "utils": {
+      "tags": []
     }
   }
 }

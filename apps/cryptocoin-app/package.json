@@ -15,6 +15,7 @@
     "react-native-safe-area-context": "*",
     "@react-native-community/masked-view": "*",
     "@testing-library/react": "*",
-    "@react-navigation/stack": "*"
+    "@react-navigation/stack": "*",
+    "recoil": "*"
   }
 }

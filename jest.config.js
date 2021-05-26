@@ -8,5 +8,7 @@ module.exports = {
     '<rootDir>/libs/hooks',
     '<rootDir>/libs/recoil/atoms',
     '<rootDir>/libs/recoil/interfaces',
+    '<rootDir>/libs/ui-mobile',
+    '<rootDir>/libs/utils',
   ],
 };
