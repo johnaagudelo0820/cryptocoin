@@ -2,7 +2,7 @@ import React from 'react';
 import { useRecoilState } from 'recoil';
 import { Container, Grid, Switch } from '@material-ui/core'
 
-import { darkModeAtom } from '../../recoil/atoms';
+import { darkModeAtom } from '@coincap/atoms';
 
 /* eslint-disable-next-line */
 export interface TemplateProps {

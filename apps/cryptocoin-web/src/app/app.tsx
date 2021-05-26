@@ -8,7 +8,7 @@ import { useRecoilValue } from 'recoil';
 import { router } from './router';
 import { Template } from './template/template';
 
-import { darkModeAtom } from '../recoil/atoms';
+import { darkModeAtom } from '@coincap/atoms';
 
 export function App() {
   const darkMode = useRecoilValue(darkModeAtom);
