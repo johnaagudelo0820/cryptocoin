@@ -2,7 +2,6 @@ export class Ws {
   instance: WebSocket = null;
 
   constructor(URL: string) {
-    console.log(URL);
     if (!this.instance) {
       this.instance = new WebSocket(encodeURI(URL));
     }
@@ -15,6 +14,7 @@ export class Ws {
   message = (onMessage: () => void) => {
     try {
       this.instance.onmessage = onMessage;
+      console.log('Websocket connected');
     } catch (err) {
       console.log(err);
     }
@@ -28,9 +28,10 @@ export class Ws {
     }
   }
 
-  close = (onClose: () => void) => {
+  close = () => {
     try {
-      this.instance.onclose = onClose;
+      this.instance.close();
+      console.log('Websocket closed');
     } catch (err) {
       console.log(err);
     }
