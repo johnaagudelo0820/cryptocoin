@@ -9,6 +9,7 @@ import { Http } from '@coincap/http';
 import { assetdetailAtom } from '@coincap/atoms';
 import { AssetHistory } from '@coincap/interfaces';
 import { useWebSocket } from '@coincap/hooks';
+import { formatterDate, formatterNumberWithDecimals, cloneObject } from '@coincap/utils';
 
 /* eslint-disable-next-line */
 export interface paramRoute {
@@ -26,8 +27,8 @@ export function Detail() {
     const historyData: Array<AssetHistory> = [];
     historyResponse.data.forEach((snapshotCriptoTime: any): void => {
       const history = Object.assign({}, {
-        time: moment(snapshotCriptoTime.time).format('YYYY-MM-DD'),
-        value: parseFloat(Number(snapshotCriptoTime.priceUsd).toFixed(2))
+        time: formatterDate(snapshotCriptoTime.time),
+        value: parseFloat(formatterNumberWithDecimals(snapshotCriptoTime.priceUsd, 2))
       });
       historyData.push(history);
     });
@@ -47,10 +48,10 @@ export function Detail() {
     const updateCurrent = JSON.parse(e.data);
     const currentHistory: AssetHistory = {
       time: moment().format('YYYY-MM-DD h:mm:ss'),
-      value: parseFloat(Number(updateCurrent[idCrypto]).toFixed(2))
+      value: parseFloat(formatterNumberWithDecimals(updateCurrent[idCrypto], 2))
     };
     setAsset((oldAsset) => {
-      const currentAsset = JSON.parse(JSON.stringify(Object.assign({}, oldAsset)));
+      const currentAsset = cloneObject(Object.assign({}, oldAsset));
       const historyData: Array<AssetHistory> = currentAsset.history;
       const dataAsset = currentAsset.data;
       dataAsset.priceUsd = updateCurrent[idCrypto];
@@ -67,17 +68,17 @@ export function Detail() {
   useWebSocket(idCrypto, updateAssetHistory);
 
   const lineSeries = [{
-    data: JSON.parse(JSON.stringify(asset.history)),
+    data: cloneObject(asset.history),
   }];
   const { priceUsd } = asset.data;
   return (
     <Box display="flex" >
-      <Box>{priceUsd}</Box>
+      <Box>{formatterNumberWithDecimals(priceUsd, 2)}</Box>
       <Chart
         options={{
           localization: {
             priceFormatter: function(price: string) {
-              return `$${Number(price).toFixed(2)}`;
+              return `$${formatterNumberWithDecimals(price, 2)}`;
             }
           }
         }}
