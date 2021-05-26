@@ -1,15 +1,63 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, FlatList, StyleSheet, ActivityIndicator, Text } from 'react-native';
 
-/* eslint-disable-next-line */
-export interface HomeScreenProps {}
+import { useRecoilState } from 'recoil';
+import { assetsAtom } from '@coincap/atoms'
+import { useFetchAssets } from '@coincap/hooks';
 
-export function HomeScreen(props: HomeScreenProps) {
+import Color from '../res/colors';
+
+export function HomeScreen() {
+  const [assets, setAssets] = useRecoilState(assetsAtom);
+
+  console.log(assets);
+
+  // custom hook inital component
+  useFetchAssets('https://api.coincap.io/v2/assets?limit=20', setAssets);
+
   return (
-    <View>
-      <Text>Welcome to home-screen!</Text>
+    <View style={styles.container}>
+      {assets.loading ? (
+        <ActivityIndicator
+          color="#fff"
+          size="large"
+          styles={styles.loader}
+        />
+      ) : (
+        <FlatList
+          data={assets.list}
+          renderItem={({ item }) => (
+            <Text>{item.name}</Text>
+          )}
+        />
+      )}
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: Color.charade,
+    justifyContent: 'center',
+  },
+  titleText: {
+    color: 'white',
+    textAlign: 'center',
+  },
+  btn: {
+    padding: 8,
+    backgroundColor: 'blue',
+    borderRadius: 8,
+    margin: 16,
+  },
+  btnText: {
+    color: 'white',
+    textAlign: 'center'
+  },
+  loader: {
+    marginTop: 60,
+  }
+});
 
 export default HomeScreen;
