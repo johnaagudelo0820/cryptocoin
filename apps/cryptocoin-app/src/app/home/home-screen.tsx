@@ -1,25 +1,18 @@
 import React from 'react';
-import { View, FlatList, StyleSheet, ActivityIndicator, Text } from 'react-native';
-import { useNavigation } from '@react-navigation/core';
+import { View, StyleSheet, ActivityIndicator } from 'react-native';
 
 import { useRecoilState } from 'recoil';
 import { assetsAtom } from '@coincap/atoms'
 import { useFetchAssets } from '@coincap/hooks';
-import { ItemListCrypto } from '@coincap/ui-mobile';
-import { colors } from '@coincap/utils' 
+import { colors } from '@coincap/utils';
+
+import HomeList from './home-list';
 
 export function HomeScreen() {
-  const navigation = useNavigation();
   const [assets, setAssets] = useRecoilState(assetsAtom);
 
   // custom hook inital component
   useFetchAssets('https://api.coincap.io/v2/assets?limit=20', setAssets);
-
-  const handlerPress = (idCryto: string) => {
-    navigation.navigate('CoinDetail', {
-      idCryto
-    });
-  }
 
   return (
     <View style={styles.container}>
@@ -30,20 +23,7 @@ export function HomeScreen() {
           styles={styles.loader}
         />
       ) : (
-        <FlatList
-          data={assets.list}
-          renderItem={({ item }) => (
-            <ItemListCrypto
-              id={item.id}
-              name={item.name}
-              symbol={item.symbol}
-              priceUsd={item.priceUsd}
-              changePercent24Hr={item.changePercent24Hr}
-              key={item.id}
-              onPress={handlerPress}
-            />
-          )}
-        />
+        <HomeList assets={assets} />
       )}
     </View>
   );
