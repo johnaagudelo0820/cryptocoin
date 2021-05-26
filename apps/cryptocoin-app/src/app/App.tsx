@@ -5,6 +5,7 @@ import {
   Image,
   Text,
 } from 'react-native';
+import { RecoilRoot } from 'recoil'; 
 
 import Home from './home/home';
 import Color from './res/colors';
@@ -28,36 +29,38 @@ const tabBarOptions = {
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <Tabs.Navigator
-        tabBarOptions={tabBarOptions}
-      >
-          <Tabs.Screen
-            name="Coins"
-            component={Home}
-            options={{
-              tabBarIcon: ({ size, color }) => (
-                <Image
-                  style={{ tintColor: color, width: size, height: size }}
-                  source={require('./assets/bank.png')}
-                />
-              ),
-            }}
-          />
-          <Tabs.Screen
-            name="Favorite"
-            component={() => <Text>Setttings</Text>}
-            options={{
-              tabBarIcon: ({ size, color }) => (
-                <Image
-                  style={{ tintColor: color, width: size, height: size }}
-                  source={require('./assets/star.png')}
-                />
-              ),
-            }}
-          />
-      </Tabs.Navigator>
-    </NavigationContainer>
+    <RecoilRoot>
+      <NavigationContainer>
+        <Tabs.Navigator
+          tabBarOptions={tabBarOptions}
+        >
+            <Tabs.Screen
+              name="Coins"
+              component={Home}
+              options={{
+                tabBarIcon: ({ size, color }) => (
+                  <Image
+                    style={{ tintColor: color, width: size, height: size }}
+                    source={require('./assets/bank.png')}
+                  />
+                ),
+              }}
+            />
+            <Tabs.Screen
+              name="Favorite"
+              component={() => <Text>Setttings</Text>}
+              options={{
+                tabBarIcon: ({ size, color }) => (
+                  <Image
+                    style={{ tintColor: color, width: size, height: size }}
+                    source={require('./assets/star.png')}
+                  />
+                ),
+              }}
+            />
+        </Tabs.Navigator>
+      </NavigationContainer>
+    </RecoilRoot>
   );
 };
 
