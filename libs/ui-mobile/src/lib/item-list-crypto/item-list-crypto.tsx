@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   percentText: {
     color: colors.white, 
     fontSize: 12,
-    marginRight: 8,
+    marginLeft: 8,
   },
   imageIcon: {
     width: 22,
