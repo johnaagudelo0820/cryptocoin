@@ -40,6 +40,12 @@
     },
     "hooks": {
       "tags": []
+    },
+    "recoil-atoms": {
+      "tags": []
+    },
+    "recoil-interfaces": {
+      "tags": []
     }
   }
 }

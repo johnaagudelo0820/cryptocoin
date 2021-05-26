@@ -6,5 +6,7 @@ module.exports = {
     '<rootDir>/libs/ws',
     '<rootDir>/libs/ui-web',
     '<rootDir>/libs/hooks',
+    '<rootDir>/libs/recoil/atoms',
+    '<rootDir>/libs/recoil/interfaces',
   ],
 };

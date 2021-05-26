@@ -45,9 +45,7 @@
         },
         "bundle-ios": {
           "executor": "@nrwl/react-native:bundle",
-          "outputs": [
-            "apps/cryptocoin-app/build"
-          ],
+          "outputs": ["apps/cryptocoin-app/build"],
           "options": {
             "entryFile": "apps/cryptocoin-app/src/main.tsx",
             "platform": "ios",
@@ -77,9 +75,7 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/cryptocoin-app/**/*.{js,ts,tsx}"
-            ]
+            "lintFilePatterns": ["apps/cryptocoin-app/**/*.{js,ts,tsx}"]
           }
         },
         "sync-deps": {
@@ -156,9 +152,7 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/cryptocoin-web/**/*.{ts,tsx,js,jsx}"
-            ]
+            "lintFilePatterns": ["apps/cryptocoin-web/**/*.{ts,tsx,js,jsx}"]
           }
         },
         "test": {
@@ -191,9 +185,7 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/cryptocoin-web-e2e/**/*.{js,ts}"
-            ]
+            "lintFilePatterns": ["apps/cryptocoin-web-e2e/**/*.{js,ts}"]
           }
         }
       }
@@ -206,16 +198,12 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/http/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/http/**/*.ts"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/http"
-          ],
+          "outputs": ["coverage/libs/http"],
           "options": {
             "jestConfig": "libs/http/jest.config.js",
             "passWithNoTests": true
@@ -231,16 +219,12 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/ws/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/ws/**/*.ts"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/ws"
-          ],
+          "outputs": ["coverage/libs/ws"],
           "options": {
             "jestConfig": "libs/ws/jest.config.js",
             "passWithNoTests": true
@@ -257,9 +241,7 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/ui-web/**/*.{ts,tsx,js,jsx}"
-            ]
+            "lintFilePatterns": ["libs/ui-web/**/*.{ts,tsx,js,jsx}"]
           }
         },
         "test": {
@@ -280,15 +262,75 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/hooks/**/*.{ts,tsx,js,jsx}"
-            ]
+            "lintFilePatterns": ["libs/hooks/**/*.{ts,tsx,js,jsx}"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/hooks/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "recoil-atoms": {
+      "root": "libs/recoil/atoms",
+      "sourceRoot": "libs/recoil/atoms/src",
+      "projectType": "library",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/workspace:tsc",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/recoil/atoms",
+            "main": "libs/recoil/atoms/src/index.ts",
+            "tsConfig": "libs/recoil/atoms/tsconfig.lib.json",
+            "assets": ["libs/recoil/atoms/*.md"]
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/recoil/atoms/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/recoil/atoms"],
+          "options": {
+            "jestConfig": "libs/recoil/atoms/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "recoil-interfaces": {
+      "root": "libs/recoil/interfaces",
+      "sourceRoot": "libs/recoil/interfaces/src",
+      "projectType": "library",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/workspace:tsc",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/recoil/interfaces",
+            "main": "libs/recoil/interfaces/src/index.ts",
+            "tsConfig": "libs/recoil/interfaces/tsconfig.lib.json",
+            "assets": ["libs/recoil/interfaces/*.md"]
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/recoil/interfaces/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/recoil/interfaces"],
+          "options": {
+            "jestConfig": "libs/recoil/interfaces/jest.config.js",
             "passWithNoTests": true
           }
         }
