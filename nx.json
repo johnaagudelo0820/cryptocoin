@@ -19,7 +19,9 @@
     }
   },
   "projects": {
-    "cryptocoin-app": { "tags": [] },
+    "cryptocoin-app": {
+      "tags": []
+    },
     "cryptocoin-web": {
       "tags": []
     },
@@ -31,6 +33,12 @@
       "tags": []
     },
     "ws": {
+      "tags": []
+    },
+    "ui-web": {
+      "tags": []
+    },
+    "hooks": {
       "tags": []
     }
   }

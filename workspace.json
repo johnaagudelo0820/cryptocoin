@@ -156,7 +156,9 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/cryptocoin-web/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": [
+              "apps/cryptocoin-web/**/*.{ts,tsx,js,jsx}"
+            ]
           }
         },
         "test": {
@@ -189,7 +191,9 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/cryptocoin-web-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/cryptocoin-web-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
@@ -202,12 +206,16 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/http/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/http/**/*.ts"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/http"],
+          "outputs": [
+            "coverage/libs/http"
+          ],
           "options": {
             "jestConfig": "libs/http/jest.config.js",
             "passWithNoTests": true
@@ -223,14 +231,64 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/ws/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/ws/**/*.ts"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/ws"],
+          "outputs": [
+            "coverage/libs/ws"
+          ],
           "options": {
             "jestConfig": "libs/ws/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ui-web": {
+      "root": "libs/ui-web",
+      "sourceRoot": "libs/ui-web/src",
+      "projectType": "library",
+      "generators": {},
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/ui-web/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ui-web/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "hooks": {
+      "root": "libs/hooks",
+      "sourceRoot": "libs/hooks/src",
+      "projectType": "library",
+      "generators": {},
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/hooks/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/hooks/jest.config.js",
             "passWithNoTests": true
           }
         }

@@ -16,7 +16,9 @@
     "baseUrl": ".",
     "paths": {
       "@coincap/http": ["libs/http/src/index.ts"],
-      "@coincap/ws": ["libs/ws/src/index.ts"]
+      "@coincap/ws": ["libs/ws/src/index.ts"],
+      "@coincap/ui-web": ["libs/ui-web/src/index.ts"],
+      "@coincap/hooks": ["libs/hooks/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
