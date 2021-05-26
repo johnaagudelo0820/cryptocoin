@@ -2,16 +2,11 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native'; 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
   Image,
-  View,
   Text,
-  StatusBar,
-  TouchableOpacity,
 } from 'react-native';
 
+import Home from './home/home';
 import Color from './res/colors';
 
 const Tabs = createBottomTabNavigator();
@@ -39,7 +34,7 @@ const App = () => {
       >
           <Tabs.Screen
             name="Coins"
-            component={() => <Text>Coins</Text>}
+            component={Home}
             options={{
               tabBarIcon: ({ size, color }) => (
                 <Image
