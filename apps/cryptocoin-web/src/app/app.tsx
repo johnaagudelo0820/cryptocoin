@@ -1,13 +1,19 @@
-import React, { useState, useMemo } from 'react';
+import React, { useMemo } from 'react';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import { Box, Switch, Typography } from '@material-ui/core';
+import { Route } from "react-router-dom";
+import { useRecoilValue } from 'recoil';
+
+import { router } from './router';
+import { Template } from './template/template';
+
+import { darkModeAtom } from '../recoil/atoms';
 
 export function App() {
-  const [darkMode, setDarkMode] = useState(false);
+  const darkMode = useRecoilValue(darkModeAtom);
 
-  const theme = React.useMemo(
+  const theme = useMemo(
     () =>
       createMuiTheme({
         palette: {
@@ -20,11 +26,13 @@ export function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline/>
-      <Switch checked={darkMode} onChange={() => setDarkMode(!darkMode)} />
-      <Typography variant="h1">
-        {darkMode ? 'Dark Mode' : 'Light Mode'}
-      </Typography>
-      <Box>APP tenemos material UI</Box>
+      <Template>
+        {router.map((route) => (
+          <Route key={route.id} path={route.path} exact>
+            {route.view}
+          </Route>
+        ))}
+      </Template>
     </ThemeProvider>
   );
 }
