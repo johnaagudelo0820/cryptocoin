@@ -1,5 +1,9 @@
 import moment from 'moment';
 
+export const config = {
+  API_BASE_URL: 'https://api.coincap.io/v2/assets',
+}
+
 export const colors = {
   blackPearl: "#20252c",
   charade: "#272c35",

@@ -5,10 +5,9 @@ import Chart from 'kaktana-react-lightweight-charts';
 import { Box } from '@material-ui/core';
 import moment from 'moment';
 
-import { Http } from '@coincap/http';
 import { assetdetailAtom } from '@coincap/atoms';
 import { AssetHistory } from '@coincap/interfaces';
-import { useWebSocket } from '@coincap/hooks';
+import { useWebSocket, useFetchDetailAsset } from '@coincap/hooks';
 import { formatterDate, formatterNumberWithDecimals, cloneObject } from '@coincap/utils';
 
 /* eslint-disable-next-line */
@@ -19,30 +18,7 @@ export interface paramRoute {
 export function Detail() {
   const { idCrypto }: paramRoute = useParams();
   const [asset, setAsset] = useRecoilState(assetdetailAtom);
-
-  const criptoData = async () => {
-    const assetResponse = await Http.instance.get(`https://api.coincap.io/v2/assets/${idCrypto}`);
-    const historyResponse = await Http.instance.get(`https://api.coincap.io/v2/assets/${idCrypto}/history?interval=d1`);
-
-    const historyData: Array<AssetHistory> = [];
-    historyResponse.data.forEach((snapshotCriptoTime: any): void => {
-      const history = Object.assign({}, {
-        time: formatterDate(snapshotCriptoTime.time),
-        value: parseFloat(formatterNumberWithDecimals(snapshotCriptoTime.priceUsd, 2))
-      });
-      historyData.push(history);
-    });
-
-    setAsset(() => ({
-      data: assetResponse.data,
-      history: [...historyData],
-      loading: false,
-    }));
-  };
-
-  useEffect(() => {
-    criptoData();
-  }, []);
+  useFetchDetailAsset(idCrypto, setAsset);
 
   const updateAssetHistory = (e: any) => {
     const updateCurrent = JSON.parse(e.data);
