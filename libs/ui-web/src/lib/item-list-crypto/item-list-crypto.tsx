@@ -9,7 +9,7 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import clsx from 'clsx';
 
-import { formatterNumberWithDecimals } from '@coincap/utils';
+import { formatterNumberWithDecimals, config } from '@coincap/utils';
 
 import useStyles from './item-list-crypto.styles';
 
@@ -52,7 +52,7 @@ export function ItemListCrypto({ id, name, symbol, priceUsd, changePercent24Hr, 
       <ListItemAvatar>
         <Avatar
           alt={name}
-          src={`https://static.coincap.io/assets/icons/${symbol.toLowerCase()}@2x.png`}
+          src={`${config.BASE_IMAGE}${symbol.toLowerCase()}@2x.png`}
         />
       </ListItemAvatar>
       <ListItemText primary={name} secondary={symbol} />

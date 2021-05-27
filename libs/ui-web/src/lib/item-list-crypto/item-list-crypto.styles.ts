@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
       background: 'transparent',
     },
     "80%": {
-      background: 'red',
+      background: '#ef6372',
     },
     "100%": {
       background: 'transparent',
@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
       background: 'transparent',
     },
     "80%": {
-      background: 'green',
+      background: '#487e4c',
     },
     "100%": {
       background: 'transparent',
