@@ -20,7 +20,7 @@ export function HomeScreen() {
         <ActivityIndicator
           color="#fff"
           size="large"
-          styles={styles.loader}
+          style={styles.loader}
         />
       ) : (
         <HomeList assets={assets} />
