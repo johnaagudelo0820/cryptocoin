@@ -23,11 +23,13 @@ export function ItemListCrypto({
   const handleAnimation = useCallback(() => {
     Animated.timing(animation, {
       toValue: 1,
-      duration: 1000
+      duration: 1000,
+      useNativeDriver: false
     } as any).start(() => {
       Animated.timing(animation, {
         toValue:0,
-        duration: 1000
+        duration: 1000,
+        useNativeDriver: false
       } as any).start()
     })
   }, [animation])
