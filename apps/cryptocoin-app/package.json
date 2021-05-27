@@ -17,6 +17,8 @@
     "@testing-library/react": "*",
     "@react-navigation/stack": "*",
     "recoil": "*",
-    "moment": "*"
+    "moment": "*",
+    "react-native-chart-kit": "*",
+    "react-native-svg": "*"
   }
 }

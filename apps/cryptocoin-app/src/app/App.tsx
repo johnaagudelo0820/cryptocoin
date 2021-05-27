@@ -1,65 +1,17 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native'; 
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import {
-  Image,
-  Text,
-} from 'react-native';
 import { RecoilRoot } from 'recoil'; 
-import { colors } from '@coincap/utils' ;
 
-import Home from './home/home';
-
-const Tabs = createBottomTabNavigator();
-
-/* import {
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-// @ts-ignore
-import openURLInBrowser from 'react-native/Libraries/Core/Devtools/openURLInBrowser'; */
-
-const tabBarOptions = {
-  tintColor: "#fefefe",
-  style: {
-    backgroundColor: colors.blackPearl,
-  }
-};
+import Navigator from './navigator/navigator';
+import Theme from './theme';
 
 const App = () => {
   return (
     <RecoilRoot>
-      <NavigationContainer>
-        <Tabs.Navigator
-          tabBarOptions={tabBarOptions}
-        >
-            <Tabs.Screen
-              name="Coins"
-              component={Home}
-              options={{
-                tabBarIcon: ({ size, color }) => (
-                  <Image
-                    style={{ tintColor: color, width: size, height: size }}
-                    source={require('./assets/bank.png')}
-                  />
-                ),
-              }}
-            />
-            <Tabs.Screen
-              name="Favorite"
-              component={() => <Text>Setttings</Text>}
-              options={{
-                tabBarIcon: ({ size, color }) => (
-                  <Image
-                    style={{ tintColor: color, width: size, height: size }}
-                    source={require('./assets/star.png')}
-                  />
-                ),
-              }}
-            />
-        </Tabs.Navigator>
-      </NavigationContainer>
+      <Theme>
+        {(theme) => (
+          <Navigator theme={theme}/>
+        )}
+      </Theme>
     </RecoilRoot>
   );
 };
