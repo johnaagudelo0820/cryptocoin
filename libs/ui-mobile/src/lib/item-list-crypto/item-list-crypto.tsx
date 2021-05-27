@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
+import React, { useState, useEffect, useCallback } from 'react';
+import { View, Text, StyleSheet, Image, TouchableWithoutFeedback, Animated } from 'react-native';
 
 import { colors, formatterNumberWithDecimals } from '@coincap/utils';
 
@@ -16,24 +16,65 @@ export interface ItemListCryptoProps {
 export function ItemListCrypto({
   onPress, symbol, name, priceUsd, changePercent24Hr
 }: ItemListCryptoProps) {
-  return (
-    <Pressable onPress={onPress} style={styles.container}>
-      <View style={styles.row}>
-        <Image
-          style={styles.imageIcon}
-          source={{
-            uri: `https://static.coincap.io/assets/icons/${symbol.toLowerCase()}@2x.png`,
-          }}
-        />
-        <Text style={styles.nameText}>{name}</Text>
-        <Text style={styles.symbolText}>{symbol}</Text>
-      </View>
+  const [animation] = useState(new Animated.Value(0));
+  const [price, setPrice] = useState(priceUsd);
+  const [upPrice, setUpPrice] = useState(colors.charade);
 
-      <View style={styles.row}>
-        <Text style={styles.namePrice}>{`$${formatterNumberWithDecimals(priceUsd, 2)}`}</Text>
-        <Text style={styles.percentText}>{`%${formatterNumberWithDecimals(changePercent24Hr, 2)}`}</Text>
-      </View>
-    </Pressable>
+  const handleAnimation = useCallback(() => {
+    Animated.timing(animation, {
+      toValue: 1,
+      duration: 1000
+    } as any).start(() => {
+      Animated.timing(animation, {
+        toValue:0,
+        duration: 1000
+      } as any).start()
+    })
+  }, [animation])
+
+  const boxInterpolation = animation.interpolate({
+    inputRange: [0, 1],
+    outputRange: [colors.charade , upPrice]
+  })
+
+  const animatedStyle = {
+    backgroundColor: boxInterpolation
+  }
+
+  useEffect(() => {
+    setPrice((oldPrice) => {
+      if(priceUsd > oldPrice) {
+        setUpPrice("rgba(45, 165, 99, 0.5)");
+        handleAnimation();
+      }
+      if (priceUsd < oldPrice) {
+        setUpPrice("rgba(224,82,99, 0.5)");
+        handleAnimation();
+      }
+      return priceUsd;
+    });
+  }, [priceUsd, handleAnimation]);
+
+  return (
+    <TouchableWithoutFeedback onPress={onPress}>
+      <Animated.View style={{ ...styles.container, ...animatedStyle }}>
+        <View style={styles.row}>
+          <Image
+            style={styles.imageIcon}
+            source={{
+              uri: `https://static.coincap.io/assets/icons/${symbol.toLowerCase()}@2x.png`,
+            }}
+          />
+          <Text style={styles.nameText}>{name}</Text>
+          <Text style={styles.symbolText}>{symbol}</Text>
+        </View>
+
+        <View style={styles.row}>
+          <Text style={styles.namePrice}>{`$${formatterNumberWithDecimals(price, 2)}`}</Text>
+          <Text style={styles.percentText}>{`%${formatterNumberWithDecimals(changePercent24Hr, 2)}`}</Text>
+        </View>
+      </Animated.View>
+    </TouchableWithoutFeedback>
   );
 }
 
