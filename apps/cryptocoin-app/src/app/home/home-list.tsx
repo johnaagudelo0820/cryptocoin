@@ -7,6 +7,7 @@ import { ItemListCrypto } from '@coincap/ui-mobile';
 import { AssetAtom } from '@coincap/interfaces';
 import { useSubscriptionPrice } from '@coincap/hooks';
 import { assetsAtom } from '@coincap/atoms'
+import { Asset } from '@coincap/interfaces'
 
 /* eslint-disable-next-line */
 export interface HomeListProps {
@@ -20,9 +21,9 @@ export function HomeList({ assets }: HomeListProps) {
     assets, setAssets,
   });
 
-  const handlerPress = (idCryto: string) => {
+  const handlerPress = (asset: Asset) => {
     navigation.navigate('CoinDetail', {
-      idCryto
+      asset
     });
   }
 
@@ -37,7 +38,7 @@ export function HomeList({ assets }: HomeListProps) {
           priceUsd={item.priceUsd}
           changePercent24Hr={item.changePercent24Hr}
           key={item.id}
-          onPress={handlerPress}
+          onPress={() => handlerPress(item)}
         />
       )}
     />
