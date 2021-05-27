@@ -16,6 +16,7 @@ export interface Asset {
   symbol: string,
   volumeUsd24Hr: string,
   vwap24Hr: string,
+  isUp?: boolean,
 }
 
 export interface AssetAtom {
@@ -23,11 +24,13 @@ export interface AssetAtom {
   hashCoins: any;
   list: Array<Asset>;
   loading: boolean;
-  isUp: boolean,
+  isUp?: boolean,
 };
 
 export type AssetDetailAtom = {
-  data: any;
-  history: Array<AssetHistory>
+  data: Asset;
+  history: Array<AssetHistory>,
+  labels: Array<string>,
+  prices: Array<number>,
   loading: boolean;
 } 

@@ -20,8 +20,24 @@ export const assetsAtom = atom({
 export const assetdetailAtom = atom({
   key: 'asset',
   default: {
-    data: {},
+    data: {
+      changePercent24Hr: '0',
+      explorer: '',
+      id: '',
+      marketCapUsd: '0',
+      maxSupply: '',
+      name: '',
+      priceUsd: '0',
+      rank: '',
+      supply: '',
+      symbol: '',
+      volumeUsd24Hr: '',
+      vwap24Hr: '',
+      isUp: false,
+    },
     history: [],
+    labels: [],
+    prices: [],
     loading: true,
   } as AssetDetailAtom,
 });
