@@ -23,6 +23,7 @@ export interface AssetAtom {
   hashCoins: any;
   list: Array<Asset>;
   loading: boolean;
+  isUp: boolean,
 };
 
 export type AssetDetailAtom = {
