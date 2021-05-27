@@ -10,17 +10,22 @@ export function useFetchDetailAsset(idCrypto: string, setAsset: any) {
     const historyResponse = await Http.instance.get(`${config.API_BASE_URL}/${idCrypto}/history?interval=d1`);
 
     const historyData: Array<AssetHistory> = [];
+    const labelsData: Array<string> = [];
+    const pricesData: Array<number> = [];
     historyResponse.data.forEach((snapshotCriptoTime: any): void => {
-      const history = Object.assign({}, {
-        time: formatterDate(snapshotCriptoTime.time),
-        value: parseFloat(formatterNumberWithDecimals(snapshotCriptoTime.priceUsd, 2))
-      });
+      const time = formatterDate(snapshotCriptoTime.time);
+      const value = parseFloat(formatterNumberWithDecimals(snapshotCriptoTime.priceUsd, 2));
+      const history = Object.assign({}, { time, value });
+      labelsData.push(time);
+      pricesData.push(value);
       historyData.push(history);
     });
 
     setAsset(() => ({
       data: assetResponse.data,
       history: [...historyData],
+      labels: labelsData,
+      prices: pricesData,
       loading: false,
     }));
   };
