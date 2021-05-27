@@ -17,6 +17,7 @@ export function useSuscriptionPriceHistory(idCrypto: string, setAsset: any) {
       const currentAsset = cloneObject(Object.assign({}, oldAsset));
       const historyData: Array<AssetHistory> = currentAsset.history;
       const dataAsset = currentAsset.data;
+      dataAsset.isUp = updateCurrent[idCrypto] > dataAsset.priceUsd;
       dataAsset.priceUsd = updateCurrent[idCrypto];
       historyData.push(currentHistory);
 
