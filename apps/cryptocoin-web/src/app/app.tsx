@@ -9,6 +9,7 @@ import { router } from './router';
 import { Template } from './template/template';
 
 import { darkModeAtom } from '@coincap/atoms';
+import { themePalette } from '@coincap/utils'; 
 
 export function App() {
   const darkMode = useRecoilValue(darkModeAtom);
@@ -17,7 +18,19 @@ export function App() {
     () =>
       createMuiTheme({
         palette: {
+          ...themePalette,
           type: darkMode ? 'dark' : 'light',
+          primary: {
+            ...themePalette.primary,
+            main: darkMode ? themePalette.secondary.main : themePalette.primary.main,
+            contrastText: themePalette.white,
+          },
+          secondary: {
+            ...themePalette.secondary,
+            main: themePalette.primary.main,
+          },
+          contrastThreshold: 3,
+          tonalOffset: 0.2,
         },
       }),
     [darkMode],
