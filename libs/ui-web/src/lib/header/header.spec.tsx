@@ -5,7 +5,11 @@ import Header from './header';
 
 describe('Header', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<Header />);
+    const mockOnChange = jest.fn();
+    const { baseElement } = render(<Header
+      onChange={mockOnChange}
+      darkMode
+    />);
     expect(baseElement).toBeTruthy();
   });
 });
