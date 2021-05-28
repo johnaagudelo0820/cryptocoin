@@ -1,23 +1,23 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
+import { useTheme } from '@react-navigation/native';
 
-import { colors } from '@coincap/utils';
+import { themePalette } from '@coincap/utils';
+
 import SettingScreen from './settings-screen';
 
 const Stack = createStackNavigator();
 
-/* eslint-disable-next-line */
-export interface SettingsProps {}
-
-export function Settings(props: SettingsProps) {
+export function Settings() {
+  const { colors } = useTheme();
   return (
     <Stack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: colors.blackPearl,
-          shadowColor: colors.blackPearl,
+          backgroundColor: colors.primary,
+          shadowColor: colors.border,
         },
-        headerTintColor: colors.white,
+        headerTintColor: themePalette.white,
       }}
     >
       <Stack.Screen name="settings" component={SettingScreen} options={{ title: 'Settings' }}/>
