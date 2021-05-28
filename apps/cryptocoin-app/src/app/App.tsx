@@ -2,7 +2,7 @@ import React from 'react';
 import { RecoilRoot } from 'recoil'; 
 
 import Navigator from './navigator/navigator';
-import Theme from './theme';
+import Theme from './Theme';
 
 const App = () => {
   return (
