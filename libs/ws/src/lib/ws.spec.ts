@@ -1,7 +1,11 @@
-import { ws } from './ws';
+import { Ws } from './ws';
 
-describe('ws', () => {
+describe('Ws', () => {
   it('should work', () => {
-    expect(ws()).toEqual('ws');
+    const ws = new Ws('wss://ws.coincap.io/prices?assets=bitcoin');
+    expect(typeof ws.open).toEqual('function');
+    expect(typeof ws.message).toEqual('function');
+    expect(typeof ws.error).toEqual('function');
+    expect(typeof ws.close).toEqual('function');
   });
 });
