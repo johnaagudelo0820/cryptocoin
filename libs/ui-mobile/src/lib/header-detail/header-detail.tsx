@@ -1,8 +1,9 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, SectionList } from 'react-native';
+import { useTheme } from '@react-navigation/native';
 
-import { colors } from '@coincap/utils';
-import { formatterNumberWithDecimals } from '@coincap/utils';
+import { themePalette } from '@coincap/utils';
+import { formatterNumberWithDecimals, config } from '@coincap/utils';
 
 /* eslint-disable-next-line */
 export interface HeaderDetailProps {
@@ -14,23 +15,28 @@ export interface HeaderDetailProps {
 }
 
 export function HeaderDetail({ name, symbol, iconIndicator, sections, price }: HeaderDetailProps) {
+  const { colors } = useTheme();
   return (
     <View style={styles.header}>
-      <View style={styles.subHeader}>
+      <View style={{ ...styles.subHeader, backgroundColor: colors.background }}>
         <View style={styles.row}>
           <Image
             style={styles.iconImg}
             source={{
-              uri: `https://static.coincap.io/assets/icons/${symbol.toLowerCase()}@2x.png`
+              uri: `${config.BASE_IMAGE}${symbol.toLowerCase()}@2x.png`
             }}
           />
-          <Text style={styles.titleText}>{name}</Text>
+          <Text style={{ ...styles.titleText, color: colors.text }}>{name}</Text>
         </View>
 
-        <Text style={styles.btnFavoriteText}>
-          {iconIndicator}
-          {`$${formatterNumberWithDecimals(price || '0', 2)}`}
-        </Text>
+        <View style={{ flexDirection: 'row', alignItems: 'center' }} >
+          <Text style={{ color: colors.text, marginRight: 10, flexDirection: 'row' }}>
+            {iconIndicator}
+          </Text>
+          <Text style={{ color: colors.text, fontSize: 18, fontWeight: 'bold' }}>
+            {`$${formatterNumberWithDecimals(price || '0', 2)}`}
+          </Text>
+        </View>
       </View>
 
       <SectionList
@@ -39,11 +45,11 @@ export function HeaderDetail({ name, symbol, iconIndicator, sections, price }: H
         keyExtractor={(item) => item}
         renderItem={({ item }) => (
           <View style={styles.sectionItem}>
-            <Text style={styles.itemText}>{item}</Text>
+            <Text style={{ ...styles.itemText, color: colors.text }}>{item}</Text>
           </View>
         )}
         renderSectionHeader={({ section }) => (
-          <View style={styles.sectionHeader}>
+          <View style={{ ...styles.sectionHeader, backgroundColor: colors.card }}>
             <Text style={styles.sectionText}>{section.title}</Text>
           </View>
         )}
@@ -60,7 +66,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   subHeader: {
-    backgroundColor: 'rgba(0,0,0,0.1)',
     padding: 16,
     flexDirection: 'row',
     alignItems: 'center',
@@ -69,60 +74,29 @@ const styles = StyleSheet.create({
   titleText: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: colors.white,
     marginLeft: 8,
   },
   iconImg: {
     width: 26,
     height: 26,
   },
-  iconIndicator: {
-    width: 15,
-    height: 15,
-    marginRight: 5
-  },
   section: {
     maxHeight: 220,
   },
   sectionHeader: {
-    backgroundColor: 'rgba(0,0,0,0.2)',
     padding: 8,
   },
   sectionItem: {
     padding: 8,
   },
   itemText: {
-    color: '#fff',
     fontSize: 14
   },
   sectionText: {
-    color: colors.white,
+    color: themePalette.white,
     fontWeight: 'bold',
     fontSize: 14,
   },
-  list: {
-    maxHeight: 100,
-  },
-  marketTitle: {
-    color: colors.white,
-    fontSize: 18,
-    marginBottom: 8,
-    marginLeft: 8,
-    fontWeight: 'bold',
-  },
-  btnFavorite: {
-    padding: 8,
-    borderRadius: 8,
-  },
-  btnFavoriteText: {
-    color: colors.white,
-  },
-  btnFavoriteAdd: {
-    backgroundColor: colors.picton,
-  },
-  btnFavoriteRemove: {
-    backgroundColor: colors.camine,
-  }
 })
 
 export default HeaderDetail;
