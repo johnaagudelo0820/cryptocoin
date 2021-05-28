@@ -1,11 +1,11 @@
-import React from 'react';
-import { render } from '@testing-library/react';
+import { renderHook, act } from '@testing-library/react-hooks'
 
-import UseWebSocket from './use-websocket';
+import useWebSocket from './use-websocket';
 
 describe('UseWebsocket', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<UseWebSocket />);
-    expect(baseElement).toBeTruthy();
+    const callbackSuscription = jest.fn();
+    const { result } = renderHook(() => useWebSocket('bitcoin', callbackSuscription));
+    expect(typeof result.current.wsRef).toBe('object');
   });
 });
