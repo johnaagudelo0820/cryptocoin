@@ -13,21 +13,4 @@ export class Http {
       throw Error(err);
     }
   }
-
-  post = async (url: string, body: any) => {
-    try {
-      const req = await fetch(url, {
-        method: 'POST',
-        body,
-      });
-
-      const json = await req.json();
-
-      return json;
-    } catch (err) {
-      console.log('Http method post', err);
-
-      throw Error(err);
-    }
-  }
 };

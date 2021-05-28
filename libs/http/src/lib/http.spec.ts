@@ -2,6 +2,6 @@ import { Http } from './http';
 
 describe('http', () => {
   it('should work', () => {
-    expect(Http()).toEqual('http');
+    expect(typeof Http.instance.get).toEqual('function');
   });
 });
