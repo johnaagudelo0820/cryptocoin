@@ -31,6 +31,8 @@ export function useFetchAssets(url: string, callbackAssets: useFetchAssetsProps)
   useEffect(() => {
     getAsset();
   }, [getAsset]);
+
+  return { getAsset };
 }
 
 export default useFetchAssets;

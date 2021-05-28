@@ -1,11 +1,13 @@
-import React from 'react';
-import { render } from '@testing-library/react';
+import { renderHook } from '@testing-library/react-hooks'
 
-import UseFetchAssets from './use-fetch-assets';
+import { config } from '@coincap/utils';
 
-describe('UseFetchAssets', () => {
+import useFetchAssets from './use-fetch-assets';
+
+describe.skip('UseFetchAssets', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<UseFetchAssets />);
-    expect(baseElement).toBeTruthy();
+    const callbackFetch = jest.fn();
+    const { result } = renderHook(() => useFetchAssets(config.API_BASE_URL, callbackFetch));
+    expect(result.current.getAsset).toBeCalled();
   });
 });
