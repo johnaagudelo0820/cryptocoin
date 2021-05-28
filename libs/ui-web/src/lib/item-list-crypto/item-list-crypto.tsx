@@ -23,7 +23,7 @@ export interface ItemListCryptoProps {
   handlerOnClick: (id: string) => void, 
 }
 
-export function ItemListCrypto({ id, name, symbol, priceUsd, changePercent24Hr, handlerOnClick }: ItemListCryptoProps) {
+export function ItemListCrypto({ id, name, symbol = '', priceUsd, changePercent24Hr, handlerOnClick }: ItemListCryptoProps) {
   const [price, setPrice] = useState(priceUsd);
   const [changePrice, setChange] = useState('');
   const classes = useStyles();
@@ -71,7 +71,7 @@ export function ItemListCrypto({ id, name, symbol, priceUsd, changePercent24Hr, 
               (24H)
             </Typography>
             <Typography variant="subtitle2" align="right">
-              {`%${formatterNumberWithDecimals(changePercent24Hr, 2)}`}
+              {`${formatterNumberWithDecimals(changePercent24Hr, 2)}%`}
             </Typography>
           </Box>  
         </Box>

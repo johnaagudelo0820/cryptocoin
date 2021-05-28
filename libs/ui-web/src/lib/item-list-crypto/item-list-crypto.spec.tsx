@@ -5,7 +5,15 @@ import ItemListCrypto from './item-list-crypto';
 
 describe('ItemListCrypto', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<ItemListCrypto />);
+    const handlerMock = jest.fn();
+    const { baseElement } = render(<ItemListCrypto
+      id="bitcoin"
+      name="Bitcoin"
+      symbol="btc"
+      priceUsd="530000.56"
+      changePercent24Hr="10.5"
+      handlerOnClick={handlerMock}
+    />);
     expect(baseElement).toBeTruthy();
   });
 });
