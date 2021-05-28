@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { RecoilRoot } from 'recoil';
 
 import { BrowserRouter } from 'react-router-dom';
 
@@ -8,9 +9,11 @@ import App from './app';
 describe('App', () => {
   it('should render successfully', () => {
     const { baseElement } = render(
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <RecoilRoot>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </RecoilRoot>
     );
 
     expect(baseElement).toBeTruthy();
@@ -18,11 +21,13 @@ describe('App', () => {
 
   it('should have a greeting as the title', () => {
     const { getByText } = render(
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <RecoilRoot>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </RecoilRoot>
     );
 
-    expect(getByText('Welcome to cryptocoin-web!')).toBeTruthy();
+    expect(getByText('Coincap')).toBeTruthy();
   });
 });
