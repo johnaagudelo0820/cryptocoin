@@ -11,8 +11,9 @@ const Tabs = createBottomTabNavigator()
 export function Navigator({ theme }) {
   const tabBarOptions = {
     tintColor: theme.colors.text,
+    activeTintColor: 'white',
+    inactiveTintColor: theme.colors.border,
     style: {
-      color: 'red',
       backgroundColor: theme.colors.primary,
     }
   };
@@ -34,7 +35,7 @@ export function Navigator({ theme }) {
             }}
           />
           <Tabs.Screen
-            name="Favorite"
+            name="Settings"
             component={Settings}
             options={{
               tabBarIcon: ({ size, color }) => (
