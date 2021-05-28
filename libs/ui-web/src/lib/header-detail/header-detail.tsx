@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Grid, Avatar, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { formatterNumberWithDecimals } from '@coincap/utils';
+import { formatterNumberWithDecimals, config } from '@coincap/utils';
 
 const useStyles = makeStyles((theme) => ({
   large: {
@@ -28,7 +28,7 @@ export function HeaderDetail({ priceUsd, name, symbol = '', imageUp }: HeaderDet
           <Avatar
             className={classes.large}
             alt={name}
-            src={`https://static.coincap.io/assets/icons/${symbol.toLowerCase()}@2x.png`}
+            src={`${config.BASE_IMAGE}${symbol.toLowerCase()}@2x.png`}
           />
         </Box>
       </Grid>
