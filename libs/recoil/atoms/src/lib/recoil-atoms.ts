@@ -4,7 +4,7 @@ import { AssetAtom, AssetDetailAtom } from '@coincap/interfaces';
 
 export const darkModeAtom = atom({
   key: 'darkMode',
-  default: false as boolean
+  default: true as boolean
 });
 
 export const assetsAtom = atom({

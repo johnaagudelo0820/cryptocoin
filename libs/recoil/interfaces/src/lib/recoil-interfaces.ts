@@ -5,7 +5,6 @@ export type AssetHistory = {
 
 export interface Asset {
   changePercent24Hr: string,
-  explorer: string,
   id: string,
   marketCapUsd: string,
   maxSupply: string,
@@ -19,9 +18,13 @@ export interface Asset {
   isUp?: boolean,
 }
 
+export interface DynamicAsset {
+  [key: string]: Asset,
+}
+
 export interface AssetAtom {
   assetParam: string;
-  hashCoins: any;
+  hashCoins: DynamicAsset;
   list: Array<Asset>;
   loading: boolean;
   isUp?: boolean,
@@ -33,4 +36,4 @@ export type AssetDetailAtom = {
   labels: Array<string>,
   prices: Array<number>,
   loading: boolean;
-} 
+}
