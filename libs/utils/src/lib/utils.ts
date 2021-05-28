@@ -1,17 +1,10 @@
 import moment from 'moment';
+import { AssetAtom } from '@coincap/interfaces'; 
 
 export const config = {
   API_BASE_URL: 'https://api.coincap.io/v2/assets',
+  WS_BASE_URL: 'wss://ws.coincap.io/prices?assets=',
   BASE_IMAGE: 'https://static.coincap.io/assets/icons/',
-}
-
-export const colors = {
-  blackPearl: "#20252c",
-  charade: "#272c35",
-  zircon: "#e0e0e0",
-  white: "#fff",
-  camine: "#ef6372",
-  picton: "#3c6fc8",
 }
 
 export const themePalette = {
@@ -30,6 +23,7 @@ export const themePalette = {
   down: '#ef6372',
   up: '#487e4c',
   white: '#fff',
+  black: '#000',
 }
 
 export const formatterNumberWithDecimals = (value: string, decimals: number): string => {
@@ -46,4 +40,40 @@ export const getCurrentDate = (): string => {
 
 export const cloneObject = (source: any) => {
   return JSON.parse(JSON.stringify(source));
+}
+
+
+export const MockAssets: AssetAtom = {
+  assetParam: 'bitcoin',
+  hashCoins: {
+    'bitcoin': {
+      "id": "bitcoin",
+      "rank": "1",
+      "symbol": "BTC",
+      "name": "Bitcoin",
+      "supply": "17193925.0000000000000000",
+      "maxSupply": "21000000.0000000000000000",
+      "marketCapUsd": "119150835874.4699281625807300",
+      "volumeUsd24Hr": "2927959461.1750323310959460",
+      "priceUsd": "6929.8217756835584756",
+      "changePercent24Hr": "-0.8101417214350335",
+      "vwap24Hr": "7175.0663247679233209"
+    }
+  },
+  list: [
+    {
+      "id": "bitcoin",
+      "rank": "1",
+      "symbol": "BTC",
+      "name": "Bitcoin",
+      "supply": "17193925.0000000000000000",
+      "maxSupply": "21000000.0000000000000000",
+      "marketCapUsd": "119150835874.4699281625807300",
+      "volumeUsd24Hr": "2927959461.1750323310959460",
+      "priceUsd": "6929.8217756835584756",
+      "changePercent24Hr": "-0.8101417214350335",
+      "vwap24Hr": "7175.0663247679233209"
+    }
+  ],
+  loading: false,
 }
