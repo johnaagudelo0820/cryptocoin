@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { View, Text, StyleSheet, Image, TouchableWithoutFeedback, Animated } from 'react-native';
+import { useTheme } from '@react-navigation/native';
 
-import { colors, formatterNumberWithDecimals } from '@coincap/utils';
+import { themePalette, formatterNumberWithDecimals, config } from '@coincap/utils';
 
 /* eslint-disable-next-line */
 export interface ItemListCryptoProps {
@@ -16,9 +17,10 @@ export interface ItemListCryptoProps {
 export function ItemListCrypto({
   onPress, symbol, name, priceUsd, changePercent24Hr
 }: ItemListCryptoProps) {
+  const { colors } = useTheme();
   const [animation] = useState(new Animated.Value(0));
   const [price, setPrice] = useState(priceUsd);
-  const [upPrice, setUpPrice] = useState(colors.charade);
+  const [upPrice, setUpPrice] = useState(colors.background);
 
   const handleAnimation = useCallback(() => {
     Animated.timing(animation, {
@@ -36,7 +38,7 @@ export function ItemListCrypto({
 
   const boxInterpolation = animation.interpolate({
     inputRange: [0, 1],
-    outputRange: [colors.charade , upPrice]
+    outputRange: [colors.background , upPrice]
   })
 
   const animatedStyle = {
@@ -46,11 +48,11 @@ export function ItemListCrypto({
   useEffect(() => {
     setPrice((oldPrice) => {
       if(priceUsd > oldPrice) {
-        setUpPrice("rgba(45, 165, 99, 0.5)");
+        setUpPrice(themePalette.up);
         handleAnimation();
       }
       if (priceUsd < oldPrice) {
-        setUpPrice("rgba(224,82,99, 0.5)");
+        setUpPrice(themePalette.down);
         handleAnimation();
       }
       return priceUsd;
@@ -59,21 +61,25 @@ export function ItemListCrypto({
 
   return (
     <TouchableWithoutFeedback onPress={onPress}>
-      <Animated.View style={{ ...styles.container, ...animatedStyle }}>
+      <Animated.View style={{
+        ...styles.container,
+        ...animatedStyle,
+        borderBottomColor: colors.primary,
+      }}>
         <View style={styles.row}>
           <Image
             style={styles.imageIcon}
             source={{
-              uri: `https://static.coincap.io/assets/icons/${symbol.toLowerCase()}@2x.png`,
+              uri: `${config.BASE_IMAGE}${symbol.toLowerCase()}@2x.png`,
             }}
           />
-          <Text style={styles.nameText}>{name}</Text>
-          <Text style={styles.symbolText}>{symbol}</Text>
+          <Text style={{ ...styles.nameText, color: colors.text }}>{name}</Text>
+          <Text style={{ ...styles.symbolText, color: colors.text }}>{symbol}</Text>
         </View>
 
         <View style={styles.row}>
-          <Text style={styles.namePrice}>{`$${formatterNumberWithDecimals(price, 2)}`}</Text>
-          <Text style={styles.percentText}>{`%${formatterNumberWithDecimals(changePercent24Hr, 2)}`}</Text>
+          <Text style={{ ...styles.namePrice, color: colors.text }}>{`$${formatterNumberWithDecimals(price, 2)}`}</Text>
+          <Text style={{ ...styles.percentText, color: colors.text }}>{`${formatterNumberWithDecimals(changePercent24Hr, 2)}%`}</Text>
         </View>
       </Animated.View>
     </TouchableWithoutFeedback>
@@ -85,7 +91,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     padding: 16,
-    borderBottomColor: colors.zircon,
     borderBottomWidth: 1,
   },
   row: {
@@ -93,23 +98,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   symbolText: {
-    color: colors.white, 
     fontSize: 10,
     marginRight: 16,
   },
   nameText: {
-    color: colors.white,
     fontWeight: "bold",
     fontSize: 16,
     marginRight: 6,
     marginLeft: 6,
   },
   namePrice: {
-    color: colors.white, 
     fontSize: 14,
   },
   percentText: {
-    color: colors.white, 
     fontSize: 12,
     marginLeft: 8,
   },
