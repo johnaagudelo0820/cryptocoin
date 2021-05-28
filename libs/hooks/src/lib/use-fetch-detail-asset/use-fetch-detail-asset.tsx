@@ -35,6 +35,8 @@ export function useFetchDetailAsset(idCrypto: string, setAsset: any) {
   useEffect(() => {
     getDetailAsset();
   }, [getDetailAsset]);
+
+  return { getDetailAsset };
 }
 
 export default useFetchDetailAsset;

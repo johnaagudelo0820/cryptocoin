@@ -1,11 +1,12 @@
-import React from 'react';
-import { render } from '@testing-library/react';
+import { renderHook } from '@testing-library/react-hooks'
 
-import UseFetchDetailAsset from './use-fetch-detail-asset';
+import useFetchDetailAsset from './use-fetch-detail-asset';
 
-describe('UseFetchDetailAsset', () => {
+describe.skip('UseFetchDetailAsset', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<UseFetchDetailAsset />);
-    expect(baseElement).toBeTruthy();
+    const callbackFetch = jest.fn();
+    const idCrypto = 'bitcoin';
+    const { result } = renderHook(() => useFetchDetailAsset(idCrypto, callbackFetch));
+    expect(result.current.getDetailAsset).toBeCalled();
   });
 });
