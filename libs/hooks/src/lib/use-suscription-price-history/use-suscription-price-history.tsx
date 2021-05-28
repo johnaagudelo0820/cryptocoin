@@ -37,6 +37,8 @@ export function useSuscriptionPriceHistory(idCrypto: string, setAsset: any) {
   const suscriptionPriceHistory = useCallback(updateAssetHistory, [idCrypto, setAsset]);
 
   useWebSocket(idCrypto, suscriptionPriceHistory);
+
+  return { suscriptionPriceHistory };
 }
 
 export default useSuscriptionPriceHistory;
