@@ -30,6 +30,8 @@ export function useSubscriptionPrice({ assets, setAssets }: UseSubscriptionPrice
   const suscritionWsPrice = useCallback(updateAssetCrypto, [assets, setAssets]);
 
   useWebSocket(assets.assetParam, suscritionWsPrice);
+
+  return { updateAssetCrypto };
 }
 
 export default useSubscriptionPrice;
