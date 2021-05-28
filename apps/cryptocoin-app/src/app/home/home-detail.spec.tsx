@@ -5,7 +5,7 @@ import HomeDetail from './home-detail';
 
 describe('HomeDetail', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<HomeDetail />);
+    const { baseElement } = render(<HomeDetail idCrypto="bitcoin" symbol="BTC" name="Bitcoin" />);
     expect(baseElement).toBeTruthy();
   });
 });
