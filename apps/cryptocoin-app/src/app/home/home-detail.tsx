@@ -1,13 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, SectionList, ActivityIndicator } from 'react-native';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { SafeAreaView, StyleSheet, Image, ActivityIndicator } from 'react-native';
+import { useRecoilState } from 'recoil';
+import { useTheme } from '@react-navigation/native';
 
 import { assetdetailAtom } from '@coincap/atoms';
 import { useFetchDetailAsset, useSuscriptionPriceHistory } from '@coincap/hooks';
 import { formatterNumberWithDecimals } from '@coincap/utils';
 import { ChartLine, HeaderDetail } from '@coincap/ui-mobile';
- 
-import { colors } from '@coincap/utils';
 
 /* eslint-disable-next-line */
 export interface HomeDetailProps {
@@ -17,13 +16,14 @@ export interface HomeDetailProps {
 }
 
 export function HomeDetail({ idCrypto, name, symbol }: HomeDetailProps) {
+  const { colors } = useTheme();
   const [asset, setAsset] = useRecoilState(assetdetailAtom)
   useFetchDetailAsset(idCrypto, setAsset);
   useSuscriptionPriceHistory(idCrypto, setAsset);
   const { priceUsd, changePercent24Hr, marketCapUsd, isUp } = asset.data;
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <HeaderDetail
         name={name}
         symbol={symbol}
@@ -53,108 +53,46 @@ export function HomeDetail({ idCrypto, name, symbol }: HomeDetailProps) {
 
       {asset.loading ? (
         <ActivityIndicator
-          color="#fff"
+          color={colors.card}
           size="large"
         />
       ): (
         <ChartLine
           labels={asset.labels}
           data={asset.prices}
-          height={220}
+          height={300}
           config={{
-            backgroundColor: '#e26a00',
-            backgroundGradientFrom: '#fb8c00',
-            backgroundGradientTo: '#ffa726',
-            decimalPlaces: 1,
-            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-            style: {
-              borderRadius: 16
+            backgroundColor: colors.background,
+            backgroundGradientFrom: colors.background,
+            backgroundGradientTo: colors.background,
+            decimalPlaces: 0,
+            color: () => colors.text,
+            labelColor: () => colors.text,
+            propsForDots: {
+              r: "0",
+              strokeWidth: "0",
             }
           }}
           style={{
             marginVertical: 8,
-            borderRadius: 16
           }}
           numberLabels={4}
           numberData={30}
         />
       )}
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.charade,
     flex: 1,
   },
-  row: {
-    flexDirection: "row",
-  },
-  subHeader: {
-    backgroundColor: 'rgba(0,0,0,0.1)',
-    padding: 16,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  titleText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: colors.white,
-    marginLeft: 8,
-  },
-  iconImg: {
-    width: 26,
-    height: 26,
-  },
   iconIndicator: {
-    width: 15,
-    height: 15,
+    width: 17,
+    height: 17,
     marginRight: 5
   },
-  section: {
-    maxHeight: 220,
-  },
-  sectionHeader: {
-    backgroundColor: 'rgba(0,0,0,0.2)',
-    padding: 8,
-  },
-  sectionItem: {
-    padding: 8,
-  },
-  itemText: {
-    color: '#fff',
-    fontSize: 14
-  },
-  sectionText: {
-    color: colors.white,
-    fontWeight: 'bold',
-    fontSize: 14,
-  },
-  list: {
-    maxHeight: 100,
-  },
-  marketTitle: {
-    color: colors.white,
-    fontSize: 18,
-    marginBottom: 8,
-    marginLeft: 8,
-    fontWeight: 'bold',
-  },
-  btnFavorite: {
-    padding: 8,
-    borderRadius: 8,
-  },
-  btnFavoriteText: {
-    color: colors.white,
-  },
-  btnFavoriteAdd: {
-    backgroundColor: colors.picton,
-  },
-  btnFavoriteRemove: {
-    backgroundColor: colors.camine,
-  }
 })
 
 export default HomeDetail;
