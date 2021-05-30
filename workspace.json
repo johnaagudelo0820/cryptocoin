@@ -45,7 +45,9 @@
         },
         "bundle-ios": {
           "executor": "@nrwl/react-native:bundle",
-          "outputs": ["apps/cryptocoin-app/build"],
+          "outputs": [
+            "apps/cryptocoin-app/build"
+          ],
           "options": {
             "entryFile": "apps/cryptocoin-app/src/main.tsx",
             "platform": "ios",
@@ -75,7 +77,9 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/cryptocoin-app/**/*.{js,ts,tsx}"]
+            "lintFilePatterns": [
+              "apps/cryptocoin-app/**/*.{js,ts,tsx}"
+            ]
           }
         },
         "sync-deps": {
@@ -152,7 +156,9 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/cryptocoin-web/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": [
+              "apps/cryptocoin-web/**/*.{ts,tsx,js,jsx}"
+            ]
           }
         },
         "test": {
@@ -185,7 +191,9 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/cryptocoin-web-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/cryptocoin-web-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
@@ -198,12 +206,16 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/http/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/http/**/*.ts"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/http"],
+          "outputs": [
+            "coverage/libs/http"
+          ],
           "options": {
             "jestConfig": "libs/http/jest.config.js",
             "passWithNoTests": true
@@ -219,12 +231,16 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/ws/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/ws/**/*.ts"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/ws"],
+          "outputs": [
+            "coverage/libs/ws"
+          ],
           "options": {
             "jestConfig": "libs/ws/jest.config.js",
             "passWithNoTests": true
@@ -241,7 +257,9 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/ui-web/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": [
+              "libs/ui-web/**/*.{ts,tsx,js,jsx}"
+            ]
           }
         },
         "test": {
@@ -249,6 +267,39 @@
           "options": {
             "jestConfig": "libs/ui-web/jest.config.js",
             "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "executor": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/ui-web/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "executor": "@nrwl/storybook:build",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/ui-web",
+            "config": {
+              "configFolder": "libs/ui-web/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
           }
         }
       }
@@ -262,7 +313,9 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/hooks/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": [
+              "libs/hooks/**/*.{ts,tsx,js,jsx}"
+            ]
           }
         },
         "test": {
@@ -281,23 +334,31 @@
       "targets": {
         "build": {
           "executor": "@nrwl/workspace:tsc",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/libs/recoil/atoms",
             "main": "libs/recoil/atoms/src/index.ts",
             "tsConfig": "libs/recoil/atoms/tsconfig.lib.json",
-            "assets": ["libs/recoil/atoms/*.md"]
+            "assets": [
+              "libs/recoil/atoms/*.md"
+            ]
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/recoil/atoms/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/recoil/atoms/**/*.ts"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/recoil/atoms"],
+          "outputs": [
+            "coverage/libs/recoil/atoms"
+          ],
           "options": {
             "jestConfig": "libs/recoil/atoms/jest.config.js",
             "passWithNoTests": true
@@ -312,23 +373,31 @@
       "targets": {
         "build": {
           "executor": "@nrwl/workspace:tsc",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/libs/recoil/interfaces",
             "main": "libs/recoil/interfaces/src/index.ts",
             "tsConfig": "libs/recoil/interfaces/tsconfig.lib.json",
-            "assets": ["libs/recoil/interfaces/*.md"]
+            "assets": [
+              "libs/recoil/interfaces/*.md"
+            ]
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/recoil/interfaces/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/recoil/interfaces/**/*.ts"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/recoil/interfaces"],
+          "outputs": [
+            "coverage/libs/recoil/interfaces"
+          ],
           "options": {
             "jestConfig": "libs/recoil/interfaces/jest.config.js",
             "passWithNoTests": true
@@ -345,7 +414,9 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/ui-mobile/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": [
+              "libs/ui-mobile/**/*.{ts,tsx,js,jsx}"
+            ]
           }
         },
         "test": {
@@ -365,15 +436,47 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/utils/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/utils/**/*.ts"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/utils"],
+          "outputs": [
+            "coverage/libs/utils"
+          ],
           "options": {
             "jestConfig": "libs/utils/jest.config.js",
             "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ui-web-e2e": {
+      "root": "apps/ui-web-e2e",
+      "sourceRoot": "apps/ui-web-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/ui-web-e2e/cypress.json",
+            "tsConfig": "apps/ui-web-e2e/tsconfig.e2e.json",
+            "devServerTarget": "ui-web:storybook"
+          },
+          "configurations": {
+            "ci": {
+              "devServerTarget": "ui-web:storybook:ci"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/ui-web-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }

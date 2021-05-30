@@ -22,16 +22,17 @@ const useStyles = makeStyles((theme) => ({
 export interface HeaderProps {
   onChange: () => void,
   darkMode: boolean,
+  title: string
 }
 
-export function Header({ onChange, darkMode }: HeaderProps) {
+export function Header({ onChange, darkMode, title }: HeaderProps) {
   const classes = useStyles();
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            Coincap
+            {title}
           </Typography>
           <Switch checked={darkMode} onChange={onChange} />
         </Toolbar>

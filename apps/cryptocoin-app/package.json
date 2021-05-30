@@ -19,6 +19,7 @@
     "recoil": "*",
     "moment": "*",
     "react-native-chart-kit": "*",
-    "react-native-svg": "*"
+    "react-native-svg": "*",
+    "@testing-library/react-hooks": "*"
   }
 }

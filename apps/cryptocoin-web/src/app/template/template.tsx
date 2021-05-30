@@ -17,6 +17,7 @@ export function Template(props: TemplateProps) {
       <Header
         darkMode={darkMode}
         onChange={() => setDarkMode(!darkMode)}
+        title="Coincap"
       />
       <Box marginTop={4}>
         <Container>

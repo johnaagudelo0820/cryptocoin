@@ -6,8 +6,8 @@ import { formatterNumberWithDecimals, config } from '@coincap/utils';
 
 const useStyles = makeStyles((theme) => ({
   large: {
-    width: theme.spacing(10),
-    height: theme.spacing(10),
+    width: theme.spacing(8),
+    height: theme.spacing(8),
   },
 }));
 
@@ -32,11 +32,11 @@ export function HeaderDetail({ priceUsd, name, symbol = '', imageUp }: HeaderDet
           />
         </Box>
       </Grid>
-      <Grid item xs={8}>
+      <Grid item xs={7}>
         <Typography variant="h4">{name}</Typography>
         <Typography>{symbol}</Typography>
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={4}>
         <Box display="flex" alignItems="center">
           <Box marginRight={2}>
             {imageUp}

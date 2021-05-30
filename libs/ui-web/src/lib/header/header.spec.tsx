@@ -9,6 +9,7 @@ describe('Header', () => {
     const { baseElement } = render(<Header
       onChange={mockOnChange}
       darkMode
+      title="Coincap"
     />);
     expect(baseElement).toBeTruthy();
   });
