@@ -18,12 +18,13 @@ const ctaOptions = {
 
 text('Symbol', 'BTC');
 export const primary = () => {
-  return <Container>
-    <HeaderDetail
-      priceUsd={text('Price', '53000.54')}
-      name={text('Name', 'Bitcoin')}
-      symbol="BTC"
-      imageUp={ctaOptions[select('Indicator', ['Up', 'Down', 'None'], 'Up')]}
-    />
-  </Container>;
+  return (
+    <Container>
+      <HeaderDetail
+        priceUsd={text('Price', '53000.54')}
+        name={text('Name', 'Bitcoin')}
+        symbol="BTC"
+        imageUp={ctaOptions[select('Indicator', ['Up', 'Down', 'None'], 'Up')]}
+      />
+    </Container>);
 };

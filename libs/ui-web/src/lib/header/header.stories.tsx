@@ -1,5 +1,6 @@
 import React from 'react';
 import { Header } from './header';
+import { BrowserRouter, Switch } from 'react-router-dom';
 
 import { withKnobs, boolean, text } from '@storybook/addon-knobs';
 
@@ -10,9 +11,11 @@ export default {
 };
 
 export const primary = () => {
-  return <Header
-    onChange={() => console.log('foobar')}
-    darkMode={boolean('DrakMode', true)}
-    title={text('Title', 'Coincap')}
-  />;
+  return <BrowserRouter>
+    <Header
+      onChange={() => console.log('foobar')}
+      darkMode={boolean('DrakMode', true)}
+      title={text('Title', 'Coincap')}
+    />
+  </BrowserRouter>;
 };
