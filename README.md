@@ -18,6 +18,29 @@ Application for crypto currency and real time prices.
 
 <p style="text-align: center;"><img src="architecture.png" width="450"></p>
 
+## Technologies
+
+- ### Web
+    - [React](https://reactjs.org/)
+    - [Recoil (state management)](https://recoiljs.org/docs/introduction/getting-started/)
+    - [Materil MUI - (System Design) and Theme](https://material-ui.com/)
+    - [React router](https://reactrouter.com/)
+    - [lightweight charts "Trading View"](https://www.npmjs.com/package/kaktana-react-lightweight-charts)
+
+
+- ### React Native
+    - [React native](https://reactnative.dev/)
+    - [React navigation and Theme configuration](https://reactnavigation.org/)
+    - [Recoil (state management)](https://recoiljs.org/docs/introduction/getting-started/)
+    - [React native chart kit](https://github.com/indiespirit/react-native-chart-kit)
+
+- ### Testing
+    - [Jest](https://jestjs.io/)
+    - [React testing library](https://testing-library.com/docs/react-testing-library/intro/)
+    - [React Hooks testing library](https://react-hooks-testing-library.com/)
+    - [Storybook](https://storybook.js.org/)
+    - [Cypress e2e](https://www.cypress.io/)
+
 ## Install
 - Install yarn
 `npm intall -g yarn`
