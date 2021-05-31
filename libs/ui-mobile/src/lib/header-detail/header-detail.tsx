@@ -30,9 +30,9 @@ export function HeaderDetail({ name, symbol, iconIndicator, sections, price }: H
         </View>
 
         <View style={{ flexDirection: 'row', alignItems: 'center' }} >
-          <Text style={{ color: colors.text, marginRight: 10, flexDirection: 'row' }}>
+          <View style={{ marginRight: 10 }}>
             {iconIndicator}
-          </Text>
+          </View>
           <Text style={{ color: colors.text, fontSize: 18, fontWeight: 'bold' }}>
             {`$${formatterNumberWithDecimals(price || '0', 2)}`}
           </Text>
